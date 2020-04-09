@@ -8,4 +8,4 @@ fun Date.format (pattern: String = "HH:mm:ss dd.MM.yy " ): String {
     return dateFormat.format(this)
 }
 
-//TODO realise Date.humanizeDiff(
+//fun Date.add ()

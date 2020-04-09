@@ -1,5 +1,6 @@
 package ru.skillbranch.devintensive.models
 
+import ru.skillbranch.devintensive.utils.Utils
 import java.util.*
 
 data class User (
@@ -31,21 +32,27 @@ data class User (
         isOnline: $isOnline        
     """.trimIndent())
 
+    @Override
+    fun equals(b: User, any: Any? = null):Boolean {
+        return  when (any) {
+            is Date ->  ((this.firstName == b.firstName) and (this.lastName == b.lastName) and (this.avatar == b.avatar) and (this.rating == b.rating)
+                            and (this.respect == b.respect) and (this.isOnline == b.isOnline))
+
+            else ->     ((this.firstName == b.firstName) and (this.lastName == b.lastName) and (this.avatar == b.avatar) and (this.rating == b.rating)
+                            and (this.respect == b.respect) and (this.lastVisit == b.lastVisit) and (this.isOnline == b.isOnline))
+            }
+        }
+
     companion object Factory {
         private var last_id = -1
 
         fun makeUser (fullNane: String?): User{
             last_id++
-
-            val parts : List<String>? = fullNane?.trimIndent()?.split(" ")
-
-            val lastName = parts?.getOrNull(0)
-            val firstName = parts?.getOrNull(1)
-
+            val (firstName, lastName) = Utils.parseFullName(fullNane)
             return when {
-                lastName == null    -> User(id = "$last_id")
-                firstName == null   -> User(id = "$last_id")
-                else ->  User(id = "$last_id", firstName = firstName, lastName = lastName)
+               (firstName == null) and (lastName == null) -> User(id = "$last_id")
+               lastName == null -> User(id = "$last_id",firstName = firstName,lastName = "Kanor")
+               else ->  User(id = "$last_id", firstName = firstName, lastName = lastName)
             }
 
         }
