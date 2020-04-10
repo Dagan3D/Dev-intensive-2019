@@ -59,5 +59,17 @@ data class User (
     }
 }
 
+/*TODO
+    Реализуй паттерн Builder для класса User.
+    User.Builder().id(s)
+    .firstName(s)
+    .lastName(s)
+    .avatar(s)
+    .rating(n)
+    .respect(n)
+    .lastVisit(d)
+    .isOnline(b)
+    .build() должен вернуть объект User
+ */
 
 
