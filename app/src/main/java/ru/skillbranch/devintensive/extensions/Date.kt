@@ -32,7 +32,7 @@ fun Date.humanizeDiff(date: Date = Date()): String{
     if (difference > 0){
         return when (difference) {
             in 0..SECOND -> "только что"
-            in SECOND..MINUTE -> "${TimeUnits.SECOND.plural(difference / SECOND)} назад"
+            in SECOND..MINUTE -> "несколько секунд назад"
             in MINUTE..HOUR -> "${TimeUnits.MINUTE.plural(difference / MINUTE)} назад"
             in HOUR..DAY -> "${TimeUnits.HOUR.plural(difference / HOUR)} назад"
             in DAY..YEAR -> "${TimeUnits.DAY.plural(difference / DAY)} назад"
@@ -42,7 +42,7 @@ fun Date.humanizeDiff(date: Date = Date()): String{
         difference = -difference
         return when (difference){
             in 0..SECOND        -> "только что"
-            in SECOND..MINUTE   -> "через ${TimeUnits.SECOND.plural(difference / SECOND)}"
+            in SECOND..MINUTE   -> "через несколько секунд"
             in MINUTE..HOUR     -> "через ${TimeUnits.MINUTE.plural(difference/ MINUTE)}"
             in HOUR..DAY        -> "через ${TimeUnits.HOUR.plural(difference/ HOUR)}"
             in DAY..YEAR        -> "через ${TimeUnits.DAY.plural(difference/ DAY)}"

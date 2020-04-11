@@ -57,7 +57,7 @@ data class User (
         }
     }
 
- /*   data class Builder (
+    data class Builder (
         var id : String? = null,
         var firstName : String? = null,
         var lastName : String? = null,
@@ -77,7 +77,7 @@ data class User (
             fun isOnline(isOnline : Boolean ) = apply {this.isOnline = isOnline}
             fun build() = User(id ?: (++last_id).toString(), firstName, lastName, avatar, rating, respect, lastVisit, isOnline)
         }
-*/
+
 }
 
 

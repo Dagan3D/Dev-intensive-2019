@@ -1,4 +1,4 @@
-/*package ru.skillbranch.devintensive.extensions
+package ru.skillbranch.devintensive.extensions
 
 fun String.truncate(number: Int = 16):String{
     var strok: String = this.trim()
@@ -27,7 +27,7 @@ fun String.stripHtml(): String{
     }
     return str.trim().replace("""[&<>'"]""".toRegex(), "")
 }
-*/
+
 /*
     Реализуй extension усекающий исходную строку до указанного числа символов (по умолчанию 16) и возвращающий усеченную строку с заполнителем "..." (если строка была усечена)
     если последний символ усеченной строки является пробелом - удалить его и добавить заполнитель
