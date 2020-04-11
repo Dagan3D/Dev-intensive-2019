@@ -1,7 +1,5 @@
 package ru.skillbranch.devintensive.utils
 
-import java.util.*
-
 object Utils{
     fun parseFullName(fullName: String?): Pair<String?, String?>{
         val parts : List<String>? = fullName?.trimIndent()?.split(" ")
@@ -13,21 +11,27 @@ object Utils{
 
     fun toInitials(firstName: String?, lastName: String?): String?{
         var initials: String?
-            when (firstName){
-            null    -> return null
-            " "     -> return null
-            ""      -> return null
-            else    -> initials = firstName[0].toUpperCase().toString()
+        val fName = firstName?.trim()
+        val lName = lastName?.trim()
+        println("$fName $lName")
+        if((fName != " ") and (fName != null) and (fName != "")) {
+            initials = fName?.get(0)?.toUpperCase().toString()
+
+            if((lName != " ") and (lName != null) and (lName != " ")) initials += lName?.get(0)?.toUpperCase().toString()
+
+        } else if((lName != " ") and (lName != null) and (lName != "")) {
+
+            initials = lName?.get(0)?.toUpperCase().toString()
+
+        } else {
+            initials = null
         }
-        if((lastName != " ") and (lastName != null)) {
-            initials += lastName?.get(0)?.toUpperCase().toString()
-        }
-        return initials
+                return initials
     }
 
     fun transliteration(payload: String, divider:String = " "): String{
         var str = ""
-        var chars = ""
+        var chars: String
         for (i in payload.indices) {
             chars = when (payload[i].toLowerCase()) {
                 'а' -> "a"
