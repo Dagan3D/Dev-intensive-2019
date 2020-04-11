@@ -136,7 +136,7 @@ enum class TimeUnits: Number{
                     0L -> "только что"
                     1L -> "1 день"
                     in 2..4 -> "$i дня"
-                    in 5..20 -> "$i деней"
+                    in 5..20 -> "$i дней"
                     else -> "Ошибка" }
 
                 } else {
