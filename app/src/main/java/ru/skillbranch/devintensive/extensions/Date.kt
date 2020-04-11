@@ -13,7 +13,7 @@ fun Date.format (pattern: String = "HH:mm:ss dd.MM.yy " ): String {
     val dateFormat = SimpleDateFormat(pattern, Locale("ru"))
     return dateFormat.format(this)
 }
-
+/*
 fun Date.add(value: Int, units: TimeUnits = TimeUnits.SECOND):Date{
     var time = this.time
 
@@ -150,7 +150,7 @@ enum class TimeUnits: Number{
             }
         }
     }
-
+*/
 /*
     Реализуй extension Date.format(pattern) возвращающий отформатированную дату по паттерну передаваемому в качестве аргумента (значение по умолчанию "HH:mm:ss dd.MM.yy" локаль "ru")
     Пример:

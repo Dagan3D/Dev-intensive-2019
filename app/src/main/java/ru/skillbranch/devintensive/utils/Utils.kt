@@ -10,7 +10,7 @@ object Utils{
         return if (firstName != "") Pair(firstName, lastName)
         else Pair(null, null)
     }
-
+/*
     fun toInitials(firstName: String?, lastName: String?): String?{
         var initials: String?
             when (firstName){
@@ -72,6 +72,7 @@ object Utils{
         return str
     }
 
+*/
 }
 
 /*
