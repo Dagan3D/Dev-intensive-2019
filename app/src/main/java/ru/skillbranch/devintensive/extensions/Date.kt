@@ -31,7 +31,7 @@ fun Date.humanizeDiff(date: Date = Date()): String{
     var difference = date.time - this.time
     if (difference > 0){
         return when (difference) {
-            in 0..SECOND -> "Только что"
+            in 0..SECOND -> "только что"
             in SECOND..MINUTE -> "${TimeUnits.SECOND.plural(difference / SECOND)} назад"
             in MINUTE..HOUR -> "${TimeUnits.MINUTE.plural(difference / MINUTE)} назад"
             in HOUR..DAY -> "${TimeUnits.HOUR.plural(difference / HOUR)} назад"
@@ -41,7 +41,7 @@ fun Date.humanizeDiff(date: Date = Date()): String{
     } else {
         difference = -difference
         return when (difference){
-            in 0..SECOND        -> "Только что"
+            in 0..SECOND        -> "только что"
             in SECOND..MINUTE   -> "через ${TimeUnits.SECOND.plural(difference / SECOND)}"
             in MINUTE..HOUR     -> "через ${TimeUnits.MINUTE.plural(difference/ MINUTE)}"
             in HOUR..DAY        -> "через ${TimeUnits.HOUR.plural(difference/ HOUR)}"

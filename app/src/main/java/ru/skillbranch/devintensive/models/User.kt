@@ -82,7 +82,7 @@ data class User (
 }
 
 
-/*TODO
+/*
     Реализуй паттерн Builder для класса User.
     User.Builder().id(s)
     .firstName(s)
