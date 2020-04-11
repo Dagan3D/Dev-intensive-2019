@@ -11,7 +11,7 @@ const val YEAR = 365 * DAY
 
 fun Date.format (pattern: String = "HH:mm:ss dd.MM.yy " ): String {
     val dateFormat = SimpleDateFormat(pattern, Locale("ru"))
-    return dateFormat.format(this)
+    return dateFormat.format(this).trim()
 }
 
 fun Date.add(value: Int, units: TimeUnits = TimeUnits.SECOND):Date{
@@ -27,7 +27,7 @@ fun Date.add(value: Int, units: TimeUnits = TimeUnits.SECOND):Date{
     return this
 }
 
-/*fun Date.humanizeDiff(date: Date = Date()): String{
+fun Date.humanizeDiff(date: Date = Date()): String{
     var difference = date.time - this.time
     if (difference > 0){
         return when (difference) {
@@ -150,14 +150,8 @@ enum class TimeUnits: Number{
                 }
             }
         }
-    }*/
+    }
 
-enum class TimeUnits{
-    SECOND,
-    MINUTE,
-    HOUR,
-    DAY,
-}
 
 /*
     Реализуй extension Date.format(pattern) возвращающий отформатированную дату по паттерну передаваемому в качестве аргумента (значение по умолчанию "HH:mm:ss dd.MM.yy" локаль "ru")
