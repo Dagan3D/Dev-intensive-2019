@@ -26,7 +26,7 @@ fun Date.add(value: Int, units: TimeUnits = TimeUnits.SECOND):Date{
     this.time = time
     return this
 }
-
+*/
 fun Date.humanizeDiff(date: Date = Date()): String{
     var difference = date.time - this.time
     if (difference > 0){
@@ -150,7 +150,7 @@ enum class TimeUnits: Number{
             }
         }
     }
-*/
+
 /*
     Реализуй extension Date.format(pattern) возвращающий отформатированную дату по паттерну передаваемому в качестве аргумента (значение по умолчанию "HH:mm:ss dd.MM.yy" локаль "ru")
     Пример:
