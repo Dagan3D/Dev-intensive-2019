@@ -12,4 +12,4 @@ class MainActivity : AppCompatActivity() {
 }
 
 
-//Bender avile
+//Bender can kill everybody
