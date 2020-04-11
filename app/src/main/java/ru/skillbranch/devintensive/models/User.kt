@@ -32,7 +32,7 @@ data class User (
         isOnline: $isOnline        
     """.trimIndent())
 
-    @Override
+ /*   @Override
     fun equals(b: User, any: Any? = null):Boolean {
         return  when (any) {
             is Date ->  ((this.firstName == b.firstName) and (this.lastName == b.lastName) and (this.avatar == b.avatar) and (this.rating == b.rating)
@@ -41,7 +41,7 @@ data class User (
             else ->     ((this.firstName == b.firstName) and (this.lastName == b.lastName) and (this.avatar == b.avatar) and (this.rating == b.rating)
                             and (this.respect == b.respect) and (this.lastVisit == b.lastVisit) and (this.isOnline == b.isOnline))
             }
-        }
+        }*/
 
     companion object Factory {
         private var last_id = -1
@@ -54,12 +54,11 @@ data class User (
                lastName == null -> User(id = "$last_id",firstName = firstName,lastName = "Kanor")
                else ->  User(id = "$last_id", firstName = firstName, lastName = lastName)
             }
-
         }
     }
 
     data class Builder (
-        var id : String = (last_id+1).toString(),
+        var id : String? = null,
         var firstName : String? = null,
         var lastName : String? = null,
         var avatar : String? = null,
@@ -68,15 +67,15 @@ data class User (
         var lastVisit : Date? = Date(),
         var isOnline : Boolean = false) {
 
-            fun id(id : String ) = apply {this.id = id; last_id++}
-            fun firstName(firstName : String?) = apply {this.firstName = firstName}
-            fun lastName(lastName : String?) = apply {this.lastName = lastName}
-            fun avatar(avatar : String?) = apply {this.avatar = avatar}
+            fun id(value: String): Builder { id = value; return this }
+            fun firstName(firstName : String) = apply {this.firstName = firstName}
+            fun lastName(lastName : String) = apply {this.lastName = lastName}
+            fun avatar(avatar : String) = apply {this.avatar = avatar}
             fun rating(rating : Int ) = apply {this.rating = rating}
-            fun respect(respect : Int ) = apply {this.respect = respect}
+            fun respect(respect : Int) = apply {this.respect = respect}
             fun lastVisit(lastVisit : Date) = apply {this.lastVisit = lastVisit}
             fun isOnline(isOnline : Boolean ) = apply {this.isOnline = isOnline}
-            fun build() = User(id, firstName, lastName, avatar, rating, respect, lastVisit, isOnline)
+            fun build() = User(id ?: (++last_id).toString(), firstName, lastName, avatar, rating, respect, lastVisit, isOnline)
         }
 
 }
