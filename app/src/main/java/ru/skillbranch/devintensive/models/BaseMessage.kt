@@ -13,10 +13,10 @@ abstract class BaseMessage (
 
     companion object Factor{
         var last_id = -1
-        fun makeMassage(from: User, chat: Chat, date: Date, payload: BaseMessage, type: String, isIncoming: Boolean = false): BaseMessage {
+        fun makeMessage(from: User?, chat: Chat, date: Date = Date(), type: String = "text",  payload: Any?, isIncoming: Boolean = false): BaseMessage {
             return when (type){
-                "image" -> ImageMessage(last_id.toString(), from, chat, isIncoming, date, "https:\\anyurl.com")
-                else  -> TextMessage(last_id.toString(), from, chat, isIncoming, date, "any text")
+                "image" -> ImageMessage(last_id.toString(), from, chat, date = date, image = payload as String)
+                else  -> TextMessage(last_id.toString(), from, chat, date = date, text = payload as String)
             }
         }
     }

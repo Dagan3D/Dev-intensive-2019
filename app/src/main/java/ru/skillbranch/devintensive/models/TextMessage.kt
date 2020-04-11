@@ -8,11 +8,11 @@ class TextMessage (
     chat: Chat,
     isIncoming: Boolean = false,
     date: Date = Date(),
-    var Text: String
+    var text: String
 ) : BaseMessage (id, from, chat, isIncoming, date) {
 
     override fun formatMessage(): String? {
-        return (" id: $id/ from: $from/ ${if (isIncoming) "получил"; else "отправил"}/  сообщение \"$Text\" $date.format}")
+        return (" id: $id/ from: $from/ ${if (isIncoming) "получил"; else "отправил"}/  сообщение \"$text\" $date.format}")
     }
 
 }
