@@ -46,9 +46,9 @@ data class User (
     companion object Factory {
         private var last_id = -1
 
-        fun makeUser (fullNane: String?): User{
+        fun makeUser (fullName: String?): User{
             last_id++
-            val (firstName, lastName) = Utils.parseFullName(fullNane)
+            val (firstName, lastName) = Utils.parseFullName(fullName)
             return when {
                (firstName == null) and (lastName == null) -> User(id = "$last_id")
                lastName == null -> User(id = "$last_id",firstName = firstName,lastName = "Kanor")

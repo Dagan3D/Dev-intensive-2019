@@ -19,7 +19,7 @@ object Utils{
             ""      -> return null
             else    -> initials = firstName[0].toUpperCase().toString()
         }
-        if((lastName != null)and(lastName != " ") and (lastName != null)) {
+        if((lastName != " ") and (lastName != null)) {
             initials += lastName?.get(0)?.toUpperCase().toString()
         }
         return initials
