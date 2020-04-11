@@ -27,7 +27,7 @@ fun Date.add(value: Int, units: TimeUnits = TimeUnits.SECOND):Date{
     return this
 }
 
-fun Date.humanizeDiff(date: Date = Date()): String{
+/*fun Date.humanizeDiff(date: Date = Date()): String{
     var difference = date.time - this.time
     if (difference > 0){
         return when (difference) {
@@ -50,11 +50,11 @@ fun Date.humanizeDiff(date: Date = Date()): String{
             }
         }
 }
-
+ */
 interface Number{
     fun plural(i: Long):String?
 }
-
+/*
 enum class TimeUnits: Number{
     SECOND {
         private val i1 = 0
@@ -149,7 +149,14 @@ enum class TimeUnits: Number{
                 }
             }
         }
-    }
+    }*/
+
+enum class TimeUnits{
+    SECOND,
+    MINUTE,
+    HOUR,
+    DAY,
+}
 
 /*
     Реализуй extension Date.format(pattern) возвращающий отформатированную дату по паттерну передаваемому в качестве аргумента (значение по умолчанию "HH:mm:ss dd.MM.yy" локаль "ru")
