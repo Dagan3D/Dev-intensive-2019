@@ -27,7 +27,7 @@ class Bender (var status: Status = Status.NORMAL, var question: Question = Quest
             } else {
                 val (newStatus, boom) = status.nextStatus()
                 status = newStatus
-                if (boom) "Это неправельный ответ\n${question.question}!" to status.color
+                if (boom) "Это неправильный ответ\n${question.question}!" to status.color
                 else {
                     question = Question.NAME
                     "Это неправильный ответ. Давай все по новой\n${question.question}" to status.color
