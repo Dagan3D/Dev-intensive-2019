@@ -112,7 +112,7 @@ object Utils{
     fun validation (string: String, typeQuestion: Bender.Question):Pair<Boolean, String?> {
         return when(typeQuestion){
             Bender.Question.NAME -> {
-                if (!string.matches(Regex("""[A-Z].*"""))){
+                if (!string.matches(Regex("""[A-Z].*|[0-9]+"""))){
                     false to "Имя должно начинаться с заглавной буквы"
                 } else {
                     true to null
