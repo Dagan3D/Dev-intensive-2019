@@ -1,6 +1,17 @@
 package ru.skillbranch.devintensive.utils
 
+import ru.skillbranch.devintensive.models.Bender
+
 object Utils{
+    /*
+    Принимает в качестве аргумента полное имя пользователя (null, пустую строку) и возвращающий пару значений Pair(firstName, lastName)
+    при невозможности распарсить полное имя или его часть вернуть null null / "firstName" null
+    Пример:
+    Utils.parseFullName(null) //null null
+    Utils.parseFullName("") //null null
+    Utils.parseFullName(" ") //null null
+    Utils.parseFullName("John") //John null
+ */
     fun parseFullName(fullName: String?): Pair<String?, String?>{
         val parts : List<String>? = fullName?.trimIndent()?.split(" ")
         val firstName = parts?.getOrNull(0)
@@ -9,6 +20,14 @@ object Utils{
         else Pair(null, null)
     }
 
+    /*  Принимает в качестве аргументов имя и фамилию пользователя (null, пустую строку) и возвращающий строку с первыми буквами имени и фамилии в верхнем регистре
+        (если один из аргументов null то вернуть один инициал, если оба аргумента null вернуть null)
+        Пример:
+        Utils.toInitials("john" ,"doe") //JD
+        Utils.toInitials("John", null) //J
+        Utils.toInitials(null, null) //null
+        Utils.toInitials(" ", "") //null
+    */
     fun toInitials(firstName: String?, lastName: String?): String?{
         var initials: String?
         val fName = firstName?.trim()
@@ -29,6 +48,12 @@ object Utils{
                 return initials
     }
 
+    /*
+        Принимает в качестве аргумента строку (divider по умолчанию " ") и возвращающий преобразованную строку из латинских символов
+        Пример:
+        Utils.transliteration("Женя Стереотипов") //Zhenya Stereotipov
+        Utils.transliteration("Amazing Петр","_") //Amazing_Petr
+     */
     fun transliteration(payload: String, divider:String = " "): String{
         var str = ""
         var chars: String
@@ -70,37 +95,67 @@ object Utils{
                 ' ' -> divider
                 else -> payload[i].toString()
             }
-            if (payload[i].isUpperCase()) str += chars.capitalize()
-            else str += chars
+            str += if (payload[i].isUpperCase()) chars.capitalize()
+            else chars
         }
         return str
     }
 
-
+    /*Проверяет соотвтсвие строки переданой параметрам валидации
+    NAME -> "Имя должно начинаться с заглавной буквы"
+    PROFESSION -> "Профессия должна начинаться со строчной буквы"
+    MATERIAL -> "Материал не должен содержать цифр"
+    BDAY -> "Год моего рождения должен содержать только цифры"
+    SERIAL -> "Серийный номер содержит только цифры, и их 7"
+    IDLE -> //игнорировать валидацию
+    */
+    fun validation (string: String, typeQuestion: Bender.Question):Pair<Boolean, String?> {
+        return when(typeQuestion){
+            Bender.Question.NAME -> {
+                if (!string.matches(Regex("""[A-Z].*"""))){
+                    false to "Имя должно начинаться с заглавной буквы"
+                } else {
+                    true to null
+                }
+            }
+            Bender.Question.PROFESSION -> {
+                if (!string.matches(Regex("""[a-z].*"""))){
+                    false to "Профессия должна начинаться со строчной буквы"
+                } else {
+                    true to null
+                }
+            }
+            Bender.Question.MATERIAL -> {
+                if (string.contains(Regex("""\d"""))){
+                    false to "Материал не должен содержать цифр"
+                } else {
+                    true to null
+                }
+            }
+            Bender.Question.BDAY -> {
+                if (string.contains(Regex("""\D"""))){
+                    false to "Год моего рождения должен содержать только цифры"
+                } else {
+                    true to null
+                }
+            }
+            Bender.Question.SERIAL -> {
+                if (!string.contains(Regex("""\d{7}"""))){
+                    false to "Серийный номер содержит только цифры, и их 7"
+                } else {
+                    true to null
+                }
+            }
+            Bender.Question.IDLE -> {
+                    true to null
+            }
+        }
+    }
 }
 
-/*
-    Реализуй метод Utils.parseFullName(fullName) принимающий в качестве аргумента полное имя пользователя (null, пустую строку) и возвращающий пару значений Pair(firstName, lastName) при невозможности распарсить полное имя или его часть вернуть null null/"firstName" null
-    Пример:
-    Utils.parseFullName(null) //null null
-    Utils.parseFullName("") //null null
-    Utils.parseFullName(" ") //null null
-    Utils.parseFullName("John") //John null
- */
-/*
-    Реализуй метод Utils.toInitials(firstName lastName) принимающий в качестве аргументов имя и фамилию пользователя (null, пустую строку) и возвращающий строку с первыми буквами имени и фамилии в верхнем регистре (если один из аргументов null то вернуть один инициал, если оба аргумента null вернуть null)
-    Пример:
-    Utils.toInitials("john" ,"doe") //JD
-    Utils.toInitials("John", null) //J
-    Utils.toInitials(null, null) //null
-    Utils.toInitials(" ", "") //null
-*/
-/*
-    Реализуй метод Utils.transliteration(payload divider) принимающий в качестве аргумента строку (divider по умолчанию " ") и возвращающий преобразованную строку из латинских символов, словарь символов соответствия алфовитов доступен в ресурсах к заданию
-    Пример:
-    Utils.transliteration("Женя Стереотипов") //Zhenya Stereotipov
-    Utils.transliteration("Amazing Петр","_") //Amazing_Petr
- */
+
+
+
 
 
 
